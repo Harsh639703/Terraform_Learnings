@@ -1,3 +1,3 @@
 output hello {
-   value="Jai shree ganesh"
+   value="Jai  shree ganesh"
 }
