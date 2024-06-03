@@ -13,6 +13,10 @@ resource "github_repository" "first_repo" {
   visibility = "public"
 }
 
+output first_repo{
+  value="first_repo.html_url   //this will print the  url of the repository
+}
+
 
 ## provider.tf
 provider "github" {
