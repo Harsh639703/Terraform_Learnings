@@ -14,7 +14,7 @@ resource "github_repository" "first_repo" {
 }
 
 output first_repo{
-  value="first_repo.html_url   //this will print the  url of the repository
+  value="github_repository.first_repo.html_url"   //this will print the  url of the repository
 }
 
 
