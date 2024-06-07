@@ -9,9 +9,50 @@
 
 ## instance.tf
 
+# first we will generate the key using ssh-keygen -i rsa then we will make the key pair to access the instance
+# now we create the security group and attach that to the instance
+
+
+## creating the key pair
+
+resource "aws_key_pair" "test-tf" {
+  key_name   = "test-tf"
+  public_key = file("${path.module}/id.pub") //using file function takes the path as an argument and access the data in that file 
+}
+
+## creating the security group
+
+resource "aws_security_group" "allow_tls" { //creating the security group
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic "
+  dynamic "ingress" {
+    for_each = [80, 22, 443, 27017]
+    iterator = port
+    content {
+      description = "TLS from VPC"
+      from_port   = port.value ///here we are using the for_each loop which is will iterate over the port dynamcally
+      to_port     = port.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+  egress{
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+
+}
+
+
 resource "aws_instance" "web"{
   ami           = "ami-05e00961530ae1b55"
   instance_type = "t2.micro"
+  key_name        = "${aws_key_pair.test-tf.key_name}" ## here we are attaching public key with the instance
+  vpc_security_group_ids = ["${aws_security_group.allow_tls.id}"] # here we are attaching the security group with the instance
   tags = {
     Name = "terraform_instance"
   }
