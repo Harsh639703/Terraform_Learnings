@@ -56,6 +56,13 @@ resource "aws_instance" "web"{
   tags = {
     Name = "terraform_instance"
   }
+    user_data = <<-EOF //this will run the commands that we want to run the our instance
+!/bin/bash
+ sudo apt-get update
+ sudo apt-get install nginx -y                            #this is the another way that you can write your code
+ sudo echo "Hi Harsh Vishnoi" >/var/www/html/index.nginx-debian.html
+ EOF
+
 }
 
 ## provider.tf
@@ -74,6 +81,11 @@ terraform plan
 terraform apply
 
 
+## Note1
+terraform taint -> this command the used when we want to create the new resource once we change any thing in that it should alter that resource instead it should create new resource.
+
+how to use this:-
+terraforn taint aws_security_groups.alloq_tls
 
 
 
