@@ -79,8 +79,10 @@ provisioner "file" {
   content= "bhai sahaab kia haal hai mai toh terraform padhra hun"
   destination = "/tmp/content.md"
 }
-
-
+# this will run the command on the local pc 
+provisioner "local-exec" {
+  command = "echo ${self.public_ip} >> mypublicip.txt"  
+}
 
 }
 
