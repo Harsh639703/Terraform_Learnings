@@ -62,6 +62,25 @@ resource "aws_instance" "web"{
  sudo apt-get install nginx -y                            #this is the another way that you can write your code
  sudo echo "Hi Harsh Vishnoi" >/var/www/html/index.nginx-debian.html
  EOF
+ # making provisioner for the instance
+connection {
+    type="ssh"
+    user = "ubuntu"
+    private_key = file("${path.module}/id")
+    host = "${self.public_ip}"
+  }
+
+provisioner "file" {
+  source = "readme.md"
+  destination = "/tmp/readme.md"
+}
+
+provisioner "file" {
+  content= "bhai sahaab kia haal hai mai toh terraform padhra hun"
+  destination = "/tmp/content.md"
+}
+
+
 
 }
 
