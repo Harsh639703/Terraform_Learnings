@@ -81,7 +81,7 @@ provisioner "file" {
 }
 # this will run the command on the local pc 
 provisioner "local-exec" {
-  command = "echo ${self.public_ip} >> mypublicip.txt"  
+  command = "echo ${self.public_ip} >>  mypublicip.txt"  
 }
 
 }
