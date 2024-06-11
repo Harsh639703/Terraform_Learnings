@@ -90,7 +90,7 @@ provisioner "local-exec" {
 
 provider "aws" {
   region     = "ap-south-1"
-  access_key = "-------add your access id---------"
+  access_key = "-------add your access id--------"
   secret_key = "----add your secret key-----"
 }
 
