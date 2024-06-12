@@ -84,6 +84,53 @@ provisioner "local-exec" {
   command = "echo ${self.public_ip} >>  mypublicip.txt"  
 }
 
+provisioner "local-exec" {
+    on_failure = continue
+    working_dir = "/tmp/"
+    command     = "echo ${self.public_ip} > mypubliciptmp.txt"
+  }
+
+  provisioner "local-exec" {
+    on_failure = continue
+    interpreter = [
+      "/usr/bin/python3", "-c"
+    ]
+    command = "print('helloworld')"
+  }
+
+
+
+  provisioner "local-exec" {
+    on_failure = continue
+    command = "env > env.txt"
+    environment = {
+      envname = "envvalue"
+    }
+  }
+
+  provisioner "local-exec" {
+    on_failure = continue
+    command = "echo 'at Create'"
+  }
+
+  provisioner "local-exec" {
+    on_failure = continue
+    when    = destroy
+    command = "echo 'at delete' "
+
+  }
+  provisioner "remote-exec" {
+    inline = [ 
+      "ifconfig -a > /tmp/ifconfig.output",
+      "echo 'hello harsh' >/tmp/test.txt"
+
+     ]
+  }
+  provisioner "remote-exec" {
+    script = "./inscripts.sh"    
+  }
+
+
 }
 
 ## provider.tf
