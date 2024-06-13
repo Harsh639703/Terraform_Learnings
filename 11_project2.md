@@ -166,4 +166,8 @@ terraforn taint aws_security_groups.alloq_tls
 ## Note4  -> terraform workspace select workspace_name
 //this command is used to switch between the workspace
 
+# learned about the modules and how to use them.
+# learned about how use different backends for the tfstate file and migrate them.
+
+
 
