@@ -163,7 +163,7 @@ terraforn taint aws_security_groups.alloq_tls
 //this command is used to create the new workspace in terraform
 
 
-## Note4  -> terraform workspace select workspace_name
+## Note4 -> terraform workspace select workspace_name
 //this command is used to switch between the workspace
 
 # Learned about the modules and how to use them.
