@@ -155,7 +155,7 @@ terraform taint -> this command the used when we want to create the new resource
 how to use this:-
 terraforn taint aws_security_groups.alloq_tls
 
-## Note2 -> terraform graph | dot -Tpdf > graph.pdf 
+## Note2 -> terraform graph | dot -Tpdf >  graph.pdf 
 // this command is used to generate the graph visualization of the instance
 
 
