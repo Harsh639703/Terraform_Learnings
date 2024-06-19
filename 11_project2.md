@@ -141,7 +141,7 @@ provider "aws" {
   secret_key = "----add your secret key-----"
 }
 
-## last step
+## last Step
 
 terraform init
 terraform validate
