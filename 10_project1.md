@@ -12,7 +12,6 @@ resource "github_repository" "first_repo" {
   description = "creating resources using "
   visibility = "public"
 }
-
 output first_repo{
   value="github_repository.first_repo.html_url"   //this will print the  url of the repository
 }
